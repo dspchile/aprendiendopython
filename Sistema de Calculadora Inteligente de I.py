@@ -1,0 +1,55 @@
+#Sistema de Calculadora Inteligente de IMC
+#Daniel Sandoval Parra - 2026
+#Determinación de rango cuantitativo
+print("Bienvenido a la calculadora inteligente de IMC.")
+E = input("Ingresa tu estatura en centímetros (cm): ")
+M = input("Ingresa tu peso en kilogramos (kg): ")
+E = float(E)
+E = E / 100
+M = float(M)
+IMC = M / (E * E)
+IMC = round(IMC,1)
+IMC = str(IMC)
+print("Tu IMC aproximado es: " + IMC)
+#Determinación de rango cualitativo
+print("Determinando estado según bases de datos del MINSAL...")
+IMC = float(IMC)
+if IMC > 40:
+    ESTADO = "Obesidad mórbida"
+elif IMC > 35:
+    ESTADO = "Obesidad grave"
+elif IMC > 30:
+    ESTADO = "Obesidad"
+elif IMC > 25:
+    ESTADO = "Sobrepeso"
+elif IMC > 18.5:
+    ESTADO = "Normal"
+else: 
+    ESTADO = "Bajo peso"
+ESTADO = str(ESTADO)
+print("Tu estado es: " + ESTADO)
+#Determinación de medidas
+print("Determinando medidas a tomar para alcanzar estado ideal...")
+IMC = float(IMC)
+if ESTADO != "Normal" and ESTADO != "Bajo peso":
+    IDEAL = 18.5 * E * E
+    CAMBIO = M - IDEAL
+    MEDIDA = "Debes bajar aproximadamente"
+elif ESTADO == "Normal":
+    MEDIDA = "¡Enhorabuena! No debes tomar medidas. Sigue manteniendo una vida saludable."
+    CAMBIO = 0
+else:
+    IDEAL = 18,5 * E * E
+    CAMBIO = IDEAL - M
+    MEDIDA = "Debes subir"
+CAMBIO = round(CAMBIO)
+IDEAL = str(IDEAL)
+CAMBIO = str(CAMBIO)
+MEDIDA = str(MEDIDA)
+PRINTCAMBIO = CAMBIO + " " + "[kg]"
+#Entrega de medidas
+if ESTADO != "Normal":
+    print(MEDIDA + " " + PRINTCAMBIO + ".")
+else:
+    print(MEDIDA) 
+print("Gracias por usar esta calculadora.")
